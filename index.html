@@ -9,30 +9,73 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<style>
+	.title-div{
+		width: 100%;
+		padding: 100px;
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+		margin: 0 auto;
+	}
+	
+	.pick-container{
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+		max-width: 60%;
+		margin: 0 auto;
+		
+	}
+	
+	.pick{
+		background-color: aqua;
+		height: 100px;
+		width: 100px;
+		
+	}
+	.button-holder{
+		width: 100%;
+		padding: 100px;
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+		margin: 0 auto;
+	}
+	.combat-div{
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+		max-width: 60%;
+		margin: 0 auto;
+	}
+</style>	
 	
 </head>
 <body>
-	<div>
+	<div class="pick-container">
 		
-		<h1>Choose your Character</h1>
-		<div>
+		<div class="title-div"><h1 id="instructions">Choose your Character</h1></div>
+		<div id="one" class="pick">
 			<h2>Option One</h2>
 		</div>
-		<div>
+		<div id="two" class="pick">
 			<h2>Option Two</h2>
 		</div>
-		<div>
+		<div id="three" class="pick">
 			<h2>Option Three</h2>
 		</div>
 	</div>
 	
+	<div class="combat-div"></div>
 
-	<button id="attack" value="attack">Attack</button>
+	<div class="button-holder"><button id="attack" value="attack">Attack</button></div>
 	
-	
+	 
 <script type=text/javascript>
-$(document).ready(function(){
+	let playerChar;
 	
+		
 	var playerOne = {
 		Health: 125,
 		Attack: 55,
@@ -47,6 +90,47 @@ $(document).ready(function(){
 		Health: 75,
 		Attack: 100
 	}
+	
+$(document).ready(function(){
+	
+	
+	
+	$('.pick').click(function(){
+		
+		$('#instructions').empty;
+		$('#instructions').text("choose your first opponent");
+		
+		if($(this).attr('id') == "one"){
+		
+			playerChar = playerOne
+			
+			$('#two').appendTo('.combat-div');
+			
+			$('#three').appendTo('.combat-div');
+			
+		}
+		if($(this).attr('id') == "two"){
+			
+			playerChar = playerTwo
+			
+			$('#one').appendTo('.combat-div');
+			
+			$('#three').appendTo('.combat-div');
+		}
+		if($(this).attr('id') == "three"){
+			
+			playerChar = playerThree
+			
+			$('#one').appendTo('.combat-div');
+			
+			$('#two').appendTo('.combat-div');
+		}
+	console.log(playerChar);
+	});
+	console.log(playerChar);
+
+	
+	
 	
 });
 </script>
