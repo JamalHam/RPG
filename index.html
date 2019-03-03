@@ -53,9 +53,11 @@
 	
 </head>
 <body>
+    
+    <div class="title-div"><h1 id="instructions">Choose your Character</h1></div>
 	<div class="pick-container">
 		
-		<div class="title-div"><h1 id="instructions">Choose your Character</h1></div>
+		
 		<div id="one" class="pick">
 			<h2>Option One</h2>
 		</div>
@@ -72,8 +74,11 @@
 	<div class="button-holder"><button id="attack" value="attack">Attack</button></div>
 	
 	 
-<script type=text/javascript>
-	let playerChar;
+<script type="text/javascript">
+
+$(document).ready(function() {
+    
+   var playerChar;
 	
 		
 	var playerOne = {
@@ -88,15 +93,13 @@
 	
 	var playerThree = {
 		Health: 75,
-		Attack: 100
+		Attack: 100,
 	}
-	
-$(document).ready(function(){
-	
 	
 	
 	$('.pick').click(function(){
-		
+		if ($('.pick-container').children().length > 1){
+        
 		$('#instructions').empty;
 		$('#instructions').text("choose your first opponent");
 		
@@ -107,6 +110,10 @@ $(document).ready(function(){
 			$('#two').appendTo('.combat-div');
 			
 			$('#three').appendTo('.combat-div');
+            
+            $('#two').removeClass("pick");
+            
+            $('#three').removeClass('pick');
 			
 		}
 		if($(this).attr('id') == "two"){
@@ -116,6 +123,10 @@ $(document).ready(function(){
 			$('#one').appendTo('.combat-div');
 			
 			$('#three').appendTo('.combat-div');
+            
+            $('#one').removeClass('pick');
+            
+            $('#three').removeClass('pick');
 		}
 		if($(this).attr('id') == "three"){
 			
@@ -124,12 +135,28 @@ $(document).ready(function(){
 			$('#one').appendTo('.combat-div');
 			
 			$('#two').appendTo('.combat-div');
+            
+            $('#one').removeClass('pick');
+            
+            $('#two').removeClass('pick');
+            
 		}
+        }
 	console.log(playerChar);
 	});
+        
+    
 	console.log(playerChar);
 
-	
+    
+    
+	if ($('.pick-container').children().length < 3){
+       $('.pick').click(function (event) {
+       dialog(this);
+       event.preventDefault();
+       event.stopPropagation();
+});
+    }
 	
 	
 });
