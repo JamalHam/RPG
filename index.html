@@ -113,8 +113,8 @@ $(document).ready(function() {
 	var playerChar;
 		
 	var playerOne = {
-		Health: 125,
-		Attack: 55,
+		Health: 300,
+		Attack: 100,
 	}
 	
 	var playerTwo = {
@@ -207,13 +207,37 @@ $(document).ready(function() {
             contender = $(".fight .combatents");
             
         }
+		 if ($('.pick-container').children().length == 1 && $('.fight').children().length == 0 && $('.combat-div').children().length == 1){
+            
+            if($(this).attr('id') == "one"){
+                
+                $('#one').appendTo('.fight');
+                
+            }
+            if($(this).attr('id') == "two"){
+                
+                $('#two').appendTo('.fight');  
+                
+        }
+            if($(this).attr('id') == "three"){
+                
+                $('#three').appendTo('.fight');
+                
+            }
+            
+            $('#instructions').empty;
+		    $('#instructions').text("Fight!!!!!!");
+            
+            contender = $(".fight .combatents");
+            
+        }
     });
     
     //setInterval(function(){ console.log(contender.attr('id')); }, 3000);
     //setInterval(function(){ console.log($('#two').attr('id')); }, 3000);
     $(document).on('click','#attack',function () {
-        
-            
+        if($('.pick-container').children().length == 1 && $('.fight').children().length == 1 && $('.combat-div').children().length == 1){
+            	
             if(contender.attr('id') == "one"){
             
                 if(playerChar.Health > 0 && playerOne.Health > 0){
@@ -252,7 +276,7 @@ $(document).ready(function() {
                     alert("you lose")
                      }
             }
-            if(contender.attr('id') == "one"){
+            if(contender.attr('id') == "three"){
             
                 if(playerChar.Health > 0 && playerThree.Health > 0){
                     playerThree.Health = playerThree.Health - playerChar.Attack;
@@ -271,20 +295,84 @@ $(document).ready(function() {
                     alert("you lose")
                      }
             }
+		}
+		if($('.pick-container').children().length == 1 && $('.fight').children().length == 1 && $('.combat-div').children().length == 0){
+			if(contender.attr('id') == "one"){
             
-           
-        
+                if(playerChar.Health > 0 && playerOne.Health > 0){
+                    playerOne.Health = playerOne.Health - playerChar.Attack;
+                    playerChar.Health = playerChar.Health - playerOne.Attack;
+                    
+                    $('.mHealthText').empty;
+                    $('.mHealthText').text(playerChar.Health);
+                    
+                    $('.oHealthText').empty;
+                    $('.oHealthText').text(playerOne.Health);
+                    
+                }else if(playerChar.Health > 0 && playerOne.Health <= 0){
+                /*new function goes here*/
+                    finalClear();
+                }else{ 
+                    alert("you lose")
+                     }
+            }
+            if(contender.attr('id') == "two"){
             
+                if(playerChar.Health > 0 && playerTwo.Health > 0){
+                    playerTwo.Health = playerTwo.Health - playerChar.Attack;
+                    playerChar.Health = playerChar.Health - playerTwo.Attack;
+                    
+                    $('.mHealthText').empty;
+                    $('.mHealthText').text(playerChar.Health);
+                    
+                    $('.oHealthText').empty;
+                    $('.oHealthText').text(playerTwo.Health);
+                    
+                }else if(playerChar.Health > 0 && playerTwo.Health <= 0){
+                /*new function goes here*/
+                    finalClear();
+                }else{ 
+                    alert("you lose")
+                     }
+            }
+            if(contender.attr('id') == "three"){
+            
+                if(playerChar.Health > 0 && playerThree.Health > 0){
+                    playerThree.Health = playerThree.Health - playerChar.Attack;
+                    playerChar.Health = playerChar.Health - playerThree.Attack;
+                    
+                    $('.mHealthText').empty;
+                    $('.mHealthText').text(playerChar.Health);
+                    
+                    $('.oHealthText').empty;
+                    $('.oHealthText').text(playerThree.Health);
+                    
+                }else if(playerChar.Health > 0 && playerThree.Health <= 0){
+                /*new function goes here*/
+                    finalClear();
+                }else{ 
+                    alert("you lose")
+                     }
+            }
+		}
     });
     //setInterval(function(){ console.log(playerChar); }, 3000);
 
     function quickClear(){
         alert("you won the first match");
-        $('.fight').empty;
+        $('.fight').html("");
         $('#instructions').empty;
         $('#instructions').text("Choose your Next Victim");
     };
-
+	
+function finalClear(){
+        alert("you won the Tournament");
+        $('.fight').html("");
+		$('.mHealthText').html("");
+		$('.oHealthText').html("");
+        $('#instructions').empty;
+        $('#instructions').text("Unleash your chaos on the world!!!");
+    };
 	
 });
 </script>
