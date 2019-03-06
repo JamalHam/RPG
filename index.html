@@ -66,17 +66,17 @@
     }
     .my-health{
         width: 50%;
-        background-color: aliceblue;
+        background-color: antiquewhite;
     }
     .opponent-health{
         width: 50%;
-        background-color: antiquewhite;
+        background-color: aliceblue;
     }
     .mHealthText{
-        color: blue;
+        color: red;
     }
     .oHealthText{
-        color: red;
+        color: blue;
     }
 </style>	
 	
@@ -102,8 +102,9 @@
 
 	<div class="button-holder"><button id="attack" value="attack">Attack</button></div>
     <div class="all-health">
+	<div class="opponent-health"><h1 class="oHealthText"></h1></div>
     <div class="my-health"><h1 class="mHealthText"></h1></div>
-    <div class="opponent-health"><h1 class="oHealthText"></h1></div>
+    
     </div>
 	 
 <script type="text/javascript">
@@ -111,6 +112,8 @@
 $(document).ready(function() {
     
 	var playerChar;
+	
+	var enemyChar;
 		
 	var playerOne = {
 		Health: 300,
@@ -127,6 +130,11 @@ $(document).ready(function() {
 		Attack: 100,
 	}
 	
+	var playerFour = {
+		Health: 75,
+		Attack: 100,
+	}
+	
     var contender;
 	
 	$('.pick').click(function(){
@@ -138,8 +146,6 @@ $(document).ready(function() {
 		$('.pick').not(this).each(function(){
 			$(this).appendTo('.combat-div');
      	});	
-			
-		
 			
 		if($(this).attr('id') == "one"){
 		
@@ -164,8 +170,6 @@ $(document).ready(function() {
 	});
     
      $(document).on('click','.combatents',function () {
-		 
-		 
 
         if ($('.combat-div').children().length > 1){
             
@@ -194,126 +198,15 @@ $(document).ready(function() {
   
     $(document).on('click','#attack',function () {
         if($('.pick-container').children().length == 1 && $('.fight').children().length == 1 && $('.combat-div').children().length == 1){
-            	
-            if(contender.attr('id') == "one"){
-            
-                if(playerChar.Health > 0 && playerOne.Health > 0){
-                    playerOne.Health = playerOne.Health - playerChar.Attack;
-                    playerChar.Health = playerChar.Health - playerOne.Attack;
-                    
-                    $('.mHealthText').empty;
-                    $('.mHealthText').text(playerChar.Health);
-                    
-                    $('.oHealthText').empty;
-                    $('.oHealthText').text(playerOne.Health);
-                    
-                }else if(playerChar.Health > 0 && playerOne.Health <= 0){
-                /*new function goes here*/
-                    quickClear();
-                }else{ 
-                    alert("you lose")
-                     }
-            }
-            if(contender.attr('id') == "two"){
-            
-                if(playerChar.Health > 0 && playerTwo.Health > 0){
-                    playerTwo.Health = playerTwo.Health - playerChar.Attack;
-                    playerChar.Health = playerChar.Health - playerTwo.Attack;
-                    
-                    $('.mHealthText').empty;
-                    $('.mHealthText').text(playerChar.Health);
-                    
-                    $('.oHealthText').empty;
-                    $('.oHealthText').text(playerTwo.Health);
-                    
-                }else if(playerChar.Health > 0 && playerTwo.Health <= 0){
-                /*new function goes here*/
-                    quickClear();
-                }else{ 
-                    alert("you lose")
-                     }
-            }
-            if(contender.attr('id') == "three"){
-            
-                if(playerChar.Health > 0 && playerThree.Health > 0){
-                    playerThree.Health = playerThree.Health - playerChar.Attack;
-                    playerChar.Health = playerChar.Health - playerThree.Attack;
-                    
-                    $('.mHealthText').empty;
-                    $('.mHealthText').text(playerChar.Health);
-                    
-                    $('.oHealthText').empty;
-                    $('.oHealthText').text(playerThree.Health);
-                    
-                }else if(playerChar.Health > 0 && playerThree.Health <= 0){
-                /*new function goes here*/
-                    quickClear();
-                }else{ 
-                    alert("you lose")
-                     }
-            }
-		}
+        	evilChar();
+			battle();
+		} 
 		if($('.pick-container').children().length == 1 && $('.fight').children().length == 1 && $('.combat-div').children().length == 0){
-			if(contender.attr('id') == "one"){
-            
-                if(playerChar.Health > 0 && playerOne.Health > 0){
-                    playerOne.Health = playerOne.Health - playerChar.Attack;
-                    playerChar.Health = playerChar.Health - playerOne.Attack;
-                    
-                    $('.mHealthText').empty;
-                    $('.mHealthText').text(playerChar.Health);
-                    
-                    $('.oHealthText').empty;
-                    $('.oHealthText').text(playerOne.Health);
-                    
-                }else if(playerChar.Health > 0 && playerOne.Health <= 0){
-                /*new function goes here*/
-                    finalClear();
-                }else{ 
-                    alert("you lose")
-                     }
-            }
-            if(contender.attr('id') == "two"){
-            
-                if(playerChar.Health > 0 && playerTwo.Health > 0){
-                    playerTwo.Health = playerTwo.Health - playerChar.Attack;
-                    playerChar.Health = playerChar.Health - playerTwo.Attack;
-                    
-                    $('.mHealthText').empty;
-                    $('.mHealthText').text(playerChar.Health);
-                    
-                    $('.oHealthText').empty;
-                    $('.oHealthText').text(playerTwo.Health);
-                    
-                }else if(playerChar.Health > 0 && playerTwo.Health <= 0){
-                /*new function goes here*/
-                    finalClear();
-                }else{ 
-                    alert("you lose")
-                     }
-            }
-            if(contender.attr('id') == "three"){
-            
-                if(playerChar.Health > 0 && playerThree.Health > 0){
-                    playerThree.Health = playerThree.Health - playerChar.Attack;
-                    playerChar.Health = playerChar.Health - playerThree.Attack;
-                    
-                    $('.mHealthText').empty;
-                    $('.mHealthText').text(playerChar.Health);
-                    
-                    $('.oHealthText').empty;
-                    $('.oHealthText').text(playerThree.Health);
-                    
-                }else if(playerChar.Health > 0 && playerThree.Health <= 0){
-                /*new function goes here*/
-                    finalClear();
-                }else{ 
-                    alert("you lose")
-                     }
-            }
+			evilChar();
+			battleTwo();
 		}
     });
-    //setInterval(function(){ console.log(playerChar); }, 3000);
+    setInterval(function(){ console.log(enemyChar); }, 3000);
 
     function quickClear(){
         alert("you won the first match");
@@ -322,7 +215,7 @@ $(document).ready(function() {
         $('#instructions').text("Choose your Next Victim");
     };
 	
-function finalClear(){
+	function finalClear(){
         alert("you won the Tournament");
         $('.fight').html("");
 		$('.mHealthText').html("");
@@ -331,6 +224,58 @@ function finalClear(){
         $('#instructions').text("Unleash your chaos on the world!!!");
     };
 	
+	function evilChar(){
+		if(contender.attr('id') == "one"){
+			enemyChar = playerOne ;
+		}
+		if(contender.attr('id') == "two"){
+			enemyChar = playerTwo;
+		}
+		if(contender.attr('id') == "three"){
+			enemyChar = playerThree;
+		}
+		if(contender.attr('id') == "four"){
+			enemyChar = playerFour;
+		}
+	};
+	
+	function battle(){
+		if(playerChar.Health > 0 && enemyChar.Health > 0){
+			enemyChar.Health = enemyChar.Health - playerChar.Attack;
+			playerChar.Health = playerChar.Health - enemyChar.Attack;
+
+			$('.mHealthText').empty;
+			$('.mHealthText').text(playerChar.Health);
+
+			$('.oHealthText').empty;
+			$('.oHealthText').text(enemyChar.Health);
+
+		}else if(playerChar.Health > 0 && enemyChar.Health <= 0){
+		/*new function goes here*/
+			quickClear();
+		}else{ 
+			alert("you lose")
+			 }
+	}
+	
+	function battleTwo(){
+		if(playerChar.Health > 0 && enemyChar.Health > 0){
+			enemyChar.Health = enemyChar.Health - playerChar.Attack;
+			playerChar.Health = playerChar.Health - enemyChar.Attack;
+
+			$('.mHealthText').empty;
+			$('.mHealthText').text(playerChar.Health);
+
+			$('.oHealthText').empty;
+			$('.oHealthText').text(enemyChar.Health);
+
+		}else if(playerChar.Health > 0 && enemyChar.Health <= 0){
+		/*new function goes here*/
+			finalClear()
+		}else{ 
+			alert("you lose")
+			 }
+	}
 });
 </script>
 </body>
