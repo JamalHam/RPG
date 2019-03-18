@@ -56,9 +56,12 @@ $(document).ready(function() {
 		}
         $('.combat-div').children().removeClass('pick');    
         $('.combat-div').children().addClass("combatents");
+        
             
         }
-    
+        
+        $('.pick-container').css('width', '50%');
+        $('.fight').css('width', '50%');
         
 	});
     
@@ -68,8 +71,11 @@ $(document).ready(function() {
             
             $(this).appendTo('.fight');
             
+            
+            
             chooseYourVictim();
             }
+         
          if ($('.pick-container').children().length == 1 && $('.fight').children().length == 0 && $('.combat-div').children().length == 2){
              
              $(this).appendTo('.fight');
@@ -99,6 +105,7 @@ $(document).ready(function() {
 			battleTwo();
 		}
     });
+    
     setInterval(function(){ console.log(enemyChar); }, 3000);
     
     function chooseYourVictim(){
@@ -106,6 +113,8 @@ $(document).ready(function() {
         $('#instructions').empty;
         
         $('#instructions').text("Fight!!!!!!");
+        
+        $('.combat-div').css('opacity', '0');
             
         contender = $(".fight .combatents");
     }
@@ -114,6 +123,7 @@ $(document).ready(function() {
         alert("you won!");
         $('.fight').html("");
         $('#instructions').empty;
+        $('.combat-div').css('opacity', '100');
         $('#instructions').text("Choose your Next Victim");
     };
 	
@@ -142,6 +152,7 @@ $(document).ready(function() {
 	};
 	
 	function battle(){
+        
 		if(playerChar.Health > 0 && enemyChar.Health > 0){
 			enemyChar.Health = enemyChar.Health - playerChar.Attack;
 			playerChar.Health = playerChar.Health - enemyChar.Attack;

@@ -1,68 +1,82 @@
-	.title-div{
-		width: 100%;
-		padding: 100px;
-		display: flex;
-		justify-content: space-around;
-		flex-wrap: wrap;
-		margin: 0 auto;
-	}
-	
-	.pick-container{
-		display: flex;
-		justify-content: space-around;
-		flex-wrap: wrap;
-		max-width: 60%;
-		margin: 0 auto;
-		
-	}
-	
-	.pick-style{
-		background-color: aqua;
-		height: 100px;
-		width: 100px;
-		
-	}
-	.button-holder{
-		width: 100%;
-		padding: 100px;
-		display: flex;
-		justify-content: space-around;
-		flex-wrap: wrap;
-		margin: 0 auto;
-	}
-    
-    .fight{
-        display: flex;
-		justify-content: space-around;
-		flex-wrap: wrap;
-		max-width: 60%;
-		margin: 100px 0;
-        height 125px;
-    }
-	.combat-div{
-		display: flex;
-		justify-content: space-around;
-		flex-wrap: wrap;
-		max-width: 60%;
-		margin: 0 auto;
-	}
-    .all-health{
-        width: 100%;
-        display: flex;
-        justify-content: space-around;
-        margin: 0 auto;
-    }
-    .my-health{
-        width: 50%;
-        background-color: antiquewhite;
-    }
-    .opponent-health{
-        width: 50%;
-        background-color: aliceblue;
-    }
-    .mHealthText{
-        color: red;
-    }
-    .oHealthText{
-        color: blue;
-    }
+.title-div{
+    width: 100%;
+    padding: 100px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.pick-container{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0 auto;
+
+}
+
+.pick-style{
+    /*background-color: aqua;*/
+    height: 100px;
+    width: 100px;
+
+}
+
+.pick-style img{
+    max-height: 200px;
+    height: 120%;
+}
+
+.button-holder{
+    width: 100%;
+    padding: 100px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.stage{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.fight{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 60%;
+    margin: 0 auto;
+    height 125px;
+}
+.combat-div{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 60%;
+    margin: 0 auto;
+}
+.all-health{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+}
+.my-health{
+    width: 50%;
+    background-color: antiquewhite;
+}
+.opponent-health{
+    width: 50%;
+    background-color: aliceblue;
+}
+.mHealthText{
+    color: red;
+}
+.oHealthText{
+    color: blue;
+}
