@@ -26,7 +26,8 @@ $(document).ready(function() {
 	
     var contender;
 	
-	$('.pick').click(function(){
+	$(document).on('click', '.pick', function(){
+		console.log("pick container was clicked");
 		if ($('.pick-container').children().length > 1){
         
 		$('#instructions').empty;
@@ -106,7 +107,6 @@ $(document).ready(function() {
 		}
     });
     
-    setInterval(function(){ console.log(enemyChar); }, 3000);
     
     function chooseYourVictim(){
             
@@ -133,7 +133,11 @@ $(document).ready(function() {
 		$('.mHealthText').html("");
 		$('.oHealthText').html("");
         $('#instructions').empty;
-        $('#instructions').text("Unleash your chaos on the world!!!");
+		$('#instructions').text("Unleash your chaos on the world!!!");
+		
+		$('#instructions').empty;
+		$('#instructions').text("you lose");
+		setTimeout(gameReset(), 15000);
     };
 	
 	function evilChar(){
@@ -167,7 +171,9 @@ $(document).ready(function() {
 		/*new function goes here*/
 			quickClear();
 		}else{ 
-			alert("you lose")
+			$('#instructions').empty;
+			$('#instructions').text("you lose");
+			setTimeout(gameReset(), 5000);
 			 }
 	}
 	
@@ -186,7 +192,58 @@ $(document).ready(function() {
 		/*new function goes here*/
 			finalClear()
 		}else{ 
-			alert("you lose")
+			$('#instructions').empty;
+			$('#instructions').text("you lose");
+			setTimeout(gameReset(), 5000);
 			 }
 	}
+
+	function gameReset(){
+        playerChar =undefined;
+        contender =undefined;
+        enemyChar =undefined;
+		$('.mHealthText').empty;
+		$('.mHealthText').text("");
+		$('.oHealthText').empty;
+		$('.oHealthText').text("");
+        $('#instructions').empty;
+        $('.pick-container').html("");
+        $('.fight').html("");
+        $('.combat-div').html("");
+		$('#instructions').html("Choose your Character");
+		
+		$('.pick-container').css('width', '100%');
+		$('.fight').css('width', 'auto');
+		$('.fight').css('max-width', '60%');
+		$('.combat-div').css('opacity', '100');
+
+		playerOne = {
+			Health: 300,
+			Attack: 100,
+		}
+		
+		playerTwo = {
+			Health: 200,
+			Attack: 35,
+		}
+		
+		playerThree = {
+			Health: 75,
+			Attack: 100,
+		}
+		
+		playerFour = {
+			Health: 75,
+			Attack: 100,
+		}
+        
+        $('.pick-container').html('<div id="one" class="pick pick-style"> <img src="assets/images/naruto.gif"></div>' +
+		'<div id="two" class="pick pick-style"><img src="assets/images/sasuke.gif"></div>' +
+		'<div id="three" class="pick pick-style"><img src="assets/images/kakashi.gif"></div>' +
+        '<div id="four" class="pick pick-style"><img src="assets/images/sakura.gif"></div>');
+		}
+		
+		setInterval(function(){ console.log("enemy char def" +  enemyChar); }, 1000);
+		setInterval(function(){ console.log("player char def" + playerChar); }, 1000);
+		setInterval(function(){ console.log("contender def" + contender); }, 1000);
 });
